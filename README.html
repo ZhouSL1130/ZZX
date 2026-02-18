@@ -274,17 +274,17 @@
         // 播放音乐功能
         const playBtn = document.getElementById('playBtn');
         const birthdayMusic = document.getElementById('birthdayMusic');
-        let isPlaying = false;
+        let isPlaying = true;
         
         playBtn.addEventListener('click', function() {
             if (!isPlaying) {
                 birthdayMusic.play();
-                playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
-                isPlaying = true;
+                playBtn.innerHTML = '<i class="fas fa-pause"></i> 播放音乐';
+                isPlaying = false;
             } else {
                 birthdayMusic.pause();
-                playBtn.innerHTML = '<i class="fas fa-play"></i> 播放音乐';
-                isPlaying = false;
+                playBtn.innerHTML = '<i class="fas fa-play"></i> 暂停音乐';
+                isPlaying = true;
             }
         });
         
