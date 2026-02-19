@@ -4,48 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>给最爱的章子璇的生日信 💌</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css">
+
     <style>
         /* --- 基础设定 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', 'Microsoft YaHei', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
-            color: #444;
-            /* 背景颜色稍微调得更柔和丰富一点 */
+            /* 🌟 全局默认使用霞鹜文楷 */
+            font-family: 'LXGW WenKai Lite', 'Microsoft YaHei', sans-serif;
+            line-height: 2.0; /* 稍微增加行高，让阅读更舒适 */
+            color: #4a3e3d; /* 颜色调为深暖灰，比纯黑更柔和 */
             background: linear-gradient(135deg, #fff0f0 0%, #ffd1d1 50%, #fff0f0 100%);
             min-height: 100vh;
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden; /* 防止飘动爱心导致横向滚动条 */
+            overflow-x: hidden;
             position: relative;
         }
 
-        /* --- 飘动爱心的样式 (新) --- */
+        /* --- 飘动爱心的样式 --- */
         .floating-heart {
             position: fixed;
-            bottom: -50px; /* 从屏幕外下方开始 */
+            bottom: -50px;
             color: #ff6b81;
-            z-index: 0; /* 在背景层 */
-            pointer-events: none; /* 不影响鼠标操作 */
+            z-index: 0;
+            pointer-events: none;
             animation: floatUp linear forwards;
             text-shadow: 0 0 5px rgba(255, 107, 129, 0.3);
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-110vh) rotate(360deg); /* 向上飘过整个屏幕并旋转 */
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- 鼠标点击特效 (新) --- */
+        /* --- 鼠标点击特效 --- */
         .click-sparkle {
             position: absolute;
             pointer-events: none;
@@ -58,22 +57,20 @@
             100% { transform: scale(2); opacity: 0; }
         }
 
-        /* --- 主容器 (增强毛玻璃质感) --- */
+        /* --- 主容器 (毛玻璃质感) --- */
         .container {
             max-width: 800px;
             width: 100%;
-            /* 核心升级：毛玻璃效果 */
-            background-color: rgba(255, 255, 255, 0.75); /* 透明度降低 */
-            backdrop-filter: blur(15px); /* 关键：背景模糊 */
-            -webkit-backdrop-filter: blur(15px); /* 兼容 Safari */
-            
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 25px;
             box-shadow: 0 20px 50px rgba(255, 107, 129, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
             overflow: hidden;
             padding: 45px;
             position: relative;
             border: 1px solid rgba(255, 214, 214, 0.5);
-            z-index: 2; /* 确保在爱心上层 */
+            z-index: 2;
         }
 
         /* --- 头部 --- */
@@ -84,33 +81,34 @@
             border-bottom: 2px dashed rgba(255, 184, 184, 0.5);
         }
         .title {
-            font-size: 2.8rem;
-            color: #ff6b81;
+            /* 🌟 标题使用麻山正字体 */
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3.5rem; /* 字体加大，更具视觉冲击力 */
+            color: #ff526a;
             margin-bottom: 10px;
-            /* 文字增加一点柔和的光晕 */
             text-shadow: 3px 3px 6px rgba(255, 107, 129, 0.2);
+            font-weight: normal; /* 行书不需要加粗 */
         }
         .subtitle {
-            font-size: 1.2rem;
-            color: #ff8fa3;
-            font-weight: 300;
+            font-size: 1.1rem;
+            color: #ff758f;
             letter-spacing: 4px;
         }
 
         /* --- 信件内容 --- */
         .letter-content {
-            padding: 30px;
-            font-size: 1.15rem;
+            padding: 35px 30px;
+            font-size: 1.2rem; /* 正文字体稍微调大一点点 */
             text-align: justify;
-            background: rgba(255, 249, 249, 0.8); /* 这里的背景也更透一点 */
+            background: rgba(255, 249, 249, 0.8);
             border-radius: 20px;
             border: 1px solid rgba(255, 228, 228, 0.6);
             margin-bottom: 40px;
             box-shadow: inset 0 0 20px rgba(255, 184, 184, 0.1);
         }
         .salutation {
-            font-size: 1.4rem;
-            color: #ff6b81;
+            font-size: 1.5rem;
+            color: #ff526a;
             margin-bottom: 25px;
             font-weight: bold;
         }
@@ -120,29 +118,40 @@
         }
         .signature {
             text-align: right;
-            margin-top: 40px;
-            font-size: 1.3rem;
-            color: #ff6b81;
-            font-family: 'Brush Script MT', 'Comic Sans MS', cursive; /* 换一个更像手写的字体 */
+            margin-top: 50px;
+        }
+        .signature-name {
+            /* 🌟 签名也使用麻山正，模仿亲笔签名 */
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            color: #ff526a;
+            line-height: 1;
+            margin-bottom: 5px;
+            display: inline-block;
+            transform: rotate(-5deg); /* 签名稍微倾斜一点更自然 */
+        }
+        .signature-date {
+            font-size: 1rem;
+            color: #888;
+            letter-spacing: 1px;
         }
 
-        /* --- 照片区域 (拍立得风格) --- */
+        /* --- 照片区域 --- */
         .photo-section {
             text-align: center;
             margin: 45px 0;
-            perspective: 1000px; /* 为3D旋转做准备 */
+            perspective: 1000px;
         }
         .photo-frame {
             display: inline-block;
             border-radius: 12px;
-            padding: 12px;
-            background: white; /* 拍立得白边 */
+            padding: 12px 12px 40px 12px; /* 底部留白更多，更像真实拍立得 */
+            background: white;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            /* 核心升级：初始倾斜角度 */
             transform: rotate(-3deg);
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* 顺滑的过渡效果 */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
         }
-        /* 鼠标悬停时照片回正并浮起 */
         .photo-frame:hover {
             transform: rotate(0deg) scale(1.03) translateY(-10px);
             box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
@@ -151,15 +160,18 @@
             width: 300px;
             height: 300px;
             object-fit: cover;
-            border-radius: 4px; /* 照片本身的圆角小一点 */
+            border-radius: 4px;
             border: 1px solid #eee;
             cursor: pointer;
         }
         .photo-caption {
-            margin-top: 18px;
-            font-style: italic;
+            position: absolute;
+            bottom: 12px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
             color: #ff8fa3;
-            font-weight: 500;
         }
 
         /* --- 底部 --- */
@@ -170,12 +182,13 @@
             border-top: 2px dashed rgba(255, 184, 184, 0.5);
         }
         .play-btn {
-            background: linear-gradient(45deg, #ff6b81, #ff8fa3); /* 按钮也变成渐变色 */
+            background: linear-gradient(45deg, #ff6b81, #ff8fa3);
             color: white;
             border: none;
             padding: 12px 30px;
             border-radius: 50px;
             font-size: 1.1rem;
+            font-family: 'LXGW WenKai Lite', sans-serif; /* 按钮也应用文楷 */
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -190,10 +203,9 @@
         }
         .birthday-wish {
             font-size: 1.6rem;
-            color: #ff6b81;
+            color: #ff526a;
             margin-top: 35px;
-            font-weight: 800;
-            /* 优化了跳动的动画，更Q弹 */
+            font-weight: bold;
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
@@ -202,16 +214,17 @@
             60% { transform: translateY(-5px); }
         }
 
-        /* --- 响应式适配 --- */
         @media (max-width: 768px) {
             .container { padding: 25px; margin: 15px; }
-            .title { font-size: 2.2rem; }
+            .title { font-size: 2.8rem; }
             .photo { width: 250px; height: 250px; }
-            .letter-content { padding: 20px; }
+            .letter-content { padding: 25px 20px; }
+            .signature-name { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
+
     <div class="container" id="mainContainer">
         
         <div class="header">
@@ -223,27 +236,27 @@
             <div class="photo-frame" title="点击切换照片">
                 <img src="https://youke.xn--y7xa690gmna.cn/s1/2026/02/18/6995c7a674214.webp" 
                      alt="我们的回忆" class="photo" id="mainPhoto">
+                <div class="photo-caption">永远闪闪发光 ✨</div>
             </div>
-            <p class="photo-caption">“ 与你在一起的每一刻，都闪闪发光 ✨ ”</p>
         </div>
         
         <div class="letter-content">
-            <div class="salutation">亲爱的 章子璇大王<span id="namePlaceholder"></span>：</div>
+            <div class="salutation">亲爱的 章子璇大王：</div>
             
-            <p class="message">十八岁生日快乐!</p>
+            <p class="message">十八岁生日快乐！</p>
             
-            <p class="message">时间过得真快，三年时间倏忽已逝，转眼间你就成年了，犹记得高一的时候前后桌的我们每天都有说不完的话和肆意的笑声，现在想来尤其怀念那段时光，没有学习压力和烂人烂事的烦恼。分班之后我也时常惦记着你和jy，非常想念那种，我觉得在我三年高中时光里有幸遇见你们真的是我人生中很幸福的一件事情。</p>
+            <p class="message">时间过得真快，三年时间倏忽已逝，转眼间你就成年了。犹记得高一的时候，前后桌的我们每天都有说不完的话和肆意的笑声，现在想来尤其怀念那段时光，没有学习压力和烂人烂事的烦恼。分班之后我也时常惦记着你和 jy，非常想念那种感觉，我觉得在我三年高中时光里有幸遇见你们，真的是我人生中很幸福的一件事情。</p>
             
-            <p class="message">不知道你喜欢什么(其实是第五皮肤买不起)，就随便买了(我以后努力补上)，嘻嘻嘻，还有其实买礼物的时候忘记贺卡了，做了个电子版的(防丢)，zzx大王不会怪罪我的吧，你人这么好(求求了)。</p>
+            <p class="message">不知道你喜欢什么（其实是第五人格皮肤买不起），就随便买了（我以后努力补上），嘻嘻嘻。还有其实买礼物的时候忘记贺卡了，做了个电子版的防丢。zzx大王不会怪罪我的吧，你人这么好（求求了）。</p>
             
-            <p class="message">我始终坚信，真心能换来真心，所以你值得世界上最美好的东西，那些烂人烂事，就留在十八岁之前吧。成年了，我们要学会把心里的空间腾出来，只装值得的人和事。</p>
+            <p class="message">我始终坚信，真心能换来真心，所以你值得世界上最美好的东西。那些烂人烂事，就留在十八岁之前吧。成年了，我们要学会把心里的空间腾出来，只装值得的人和事。</p>
             
-            <p class="message">生日快乐，章子璇。愿你新的一岁，少掉眼泪，多笑起来;少熬夜，多吃饭;少为不值得的人难过，多和让你开心的人在一起。愿你的十八岁，有光，有爱，有希望，有前程可奔赴，有岁月可回首。</p>
+            <p class="message">生日快乐，章子璇。愿你新的一岁，少掉眼泪，多笑起来；少熬夜，多吃饭；少为不值得的人难过，多和让你开心的人在一起。愿你的十八岁，有光，有爱，有希望，有前程可奔赴，有岁月可回首。</p>
             
             <div class="signature">
-                成年快乐，未来可期。<br>
-                <span id="yourName" style="font-size: 1.5rem;">lss </span><br>
-                <span id="currentDate" style="font-size: 1rem; opacity: 0.8;">2026年1月22日</span>
+                <div style="margin-bottom: 15px;">成年快乐，未来可期。</div>
+                <div class="signature-name">lss</div><br>
+                <div class="signature-date">2026年1月22日</div>
             </div>
         </div>
         
@@ -259,13 +272,13 @@
             </div>
             
             <div class="birthday-wish">
-                🎉 生日快乐！愿你的新一岁充满爱与惊喜！ 🎉
+                🎉 愿你的新一岁充满爱与惊喜！ 🎉
             </div>
         </div>
     </div>
 
     <script>
-        // --- 1. 音乐播放控制 (保持不变) ---
+        // --- 1. 音乐播放控制 ---
         const playBtn = document.getElementById('playBtn');
         const birthdayMusic = document.getElementById('birthdayMusic');
         let isPlaying = false; 
@@ -279,49 +292,42 @@
                 birthdayMusic.play().then(() => {
                     playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
                     isPlaying = true;
-                }).catch(e => console.error("播放失败，请检查浏览器设置", e));
+                }).catch(e => console.error("播放失败", e));
             }
         }
 
-        // 按钮点击切换
         playBtn.addEventListener('click', function(e) {
-             e.stopPropagation(); // 阻止冒泡，防止触发点击特效
+             e.stopPropagation(); 
              toggleMusic();
         });
 
-        // 尝试自动播放（隐形启动）
         function autoStartMusic() {
             if (birthdayMusic.paused) {
                 birthdayMusic.play().then(() => {
                     isPlaying = true;
                     playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
-                    // 成功后移除监听器
                     ['click', 'touchstart', 'scroll'].forEach(evt => 
                         document.removeEventListener(evt, autoStartMusic)
                     );
-                }).catch(() => {}); // 忽略初始失败
+                }).catch(() => {});
             }
         }
-        // 监听用户首次交互
         ['click', 'touchstart', 'scroll'].forEach(evt => 
             document.addEventListener(evt, autoStartMusic, { once: true })
         );
 
-
-        // --- 2. 美化升级：动态飘浮爱心系统 ---
+        // --- 2. 动态飘浮爱心系统 ---
         function createFloatingHeart() {
             const heart = document.createElement('div');
             heart.className = 'floating-heart';
-            // 可以随机选择不同的图标，比如爱心、星星
             const icons = ['fa-heart', 'fa-heart', 'fa-star'];
             const randomIcon = icons[Math.floor(Math.random() * icons.length)];
             heart.innerHTML = `<i class="fas ${randomIcon}"></i>`;
             
-            // 随机参数
-            const size = Math.random() * 20 + 10; // 10px - 30px
-            const left = Math.random() * 100; // 0% - 100% 屏幕宽度
-            const duration = Math.random() * 5 + 5; // 5s - 10s 飘动时间
-            const opacity = Math.random() * 0.5 + 0.2; // 透明度
+            const size = Math.random() * 20 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 5 + 5;
+            const opacity = Math.random() * 0.5 + 0.2;
 
             heart.style.left = `${left}vw`;
             heart.style.fontSize = `${size}px`;
@@ -330,40 +336,28 @@
             
             document.body.appendChild(heart);
 
-            // 动画结束后移除元素，防止内存泄漏
-            setTimeout(() => {
-                heart.remove();
-            }, duration * 1000);
+            setTimeout(() => { heart.remove(); }, duration * 1000);
         }
-
-        // 每隔 400ms 生成一个新爱心
         setInterval(createFloatingHeart, 400);
 
-
-        // --- 3. 美化升级：鼠标点击炸裂特效 ---
+        // --- 3. 鼠标点击炸裂特效 ---
         document.addEventListener('click', function(e) {
-            // 如果点击的是按钮或照片，不触发特效
             if (e.target.closest('.play-btn') || e.target.closest('.photo-frame')) return;
 
             const sparkle = document.createElement('div');
             sparkle.className = 'click-sparkle';
             sparkle.innerHTML = '<i class="fas fa-heart"></i>';
-            
             sparkle.style.left = `${e.clientX}px`;
             sparkle.style.top = `${e.clientY}px`;
             
             document.body.appendChild(sparkle);
-            
-            // 动画结束后移除
             sparkle.addEventListener('animationend', () => sparkle.remove());
         });
 
-        
-        // --- 4. 照片切换功能 (保持不变) ---
+        // --- 4. 照片切换 ---
         const photo = document.getElementById('mainPhoto');
         const photoUrls = [
-            'https://youke.xn--y7xa690gmna.cn/s1/2026/02/18/6995c7a674214.webp',
-            // 在这里添加更多照片链接...
+            'https://youke.xn--y7xa690gmna.cn/s1/2026/02/18/6995c7a674214.webp'
         ];
         let currentPhotoIndex = 0;
         
