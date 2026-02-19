@@ -6,64 +6,107 @@
     <title>给最爱的章子璇的生日信 💌</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS样式保持不变 */
+        /* --- 基础设定 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.8;
             color: #444;
-            background: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
+            /* 背景颜色稍微调得更柔和丰富一点 */
+            background: linear-gradient(135deg, #fff0f0 0%, #ffd1d1 50%, #fff0f0 100%);
             min-height: 100vh;
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow-x: hidden; /* 防止飘动爱心导致横向滚动条 */
+            position: relative;
         }
+
+        /* --- 飘动爱心的样式 (新) --- */
+        .floating-heart {
+            position: fixed;
+            bottom: -50px; /* 从屏幕外下方开始 */
+            color: #ff6b81;
+            z-index: 0; /* 在背景层 */
+            pointer-events: none; /* 不影响鼠标操作 */
+            animation: floatUp linear forwards;
+            text-shadow: 0 0 5px rgba(255, 107, 129, 0.3);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg); /* 向上飘过整个屏幕并旋转 */
+                opacity: 0;
+            }
+        }
+
+        /* --- 鼠标点击特效 (新) --- */
+        .click-sparkle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkleAnim 0.8s ease-out forwards;
+            color: #ff6b81;
+            z-index: 100;
+        }
+        @keyframes sparkleAnim {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* --- 主容器 (增强毛玻璃质感) --- */
         .container {
             max-width: 800px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(255, 107, 129, 0.2);
+            /* 核心升级：毛玻璃效果 */
+            background-color: rgba(255, 255, 255, 0.75); /* 透明度降低 */
+            backdrop-filter: blur(15px); /* 关键：背景模糊 */
+            -webkit-backdrop-filter: blur(15px); /* 兼容 Safari */
+            
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(255, 107, 129, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
             overflow: hidden;
-            padding: 40px;
+            padding: 45px;
             position: relative;
-            border: 1px solid #ffd6d6;
+            border: 1px solid rgba(255, 214, 214, 0.5);
+            z-index: 2; /* 确保在爱心上层 */
         }
-        .heart {
-            position: absolute;
-            color: #ff6b81;
-            font-size: 20px;
-            opacity: 0.6;
-        }
+
+        /* --- 头部 --- */
         .header {
             text-align: center;
             margin-bottom: 40px;
             padding-bottom: 25px;
-            border-bottom: 2px dashed #ffb8b8;
-            position: relative;
+            border-bottom: 2px dashed rgba(255, 184, 184, 0.5);
         }
         .title {
             font-size: 2.8rem;
             color: #ff6b81;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            /* 文字增加一点柔和的光晕 */
+            text-shadow: 3px 3px 6px rgba(255, 107, 129, 0.2);
         }
         .subtitle {
             font-size: 1.2rem;
             color: #ff8fa3;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
+
+        /* --- 信件内容 --- */
         .letter-content {
-            padding: 20px;
+            padding: 30px;
             font-size: 1.15rem;
             text-align: justify;
-            background: #fff9f9;
-            border-radius: 15px;
-            border: 1px solid #ffe4e4;
+            background: rgba(255, 249, 249, 0.8); /* 这里的背景也更透一点 */
+            border-radius: 20px;
+            border: 1px solid rgba(255, 228, 228, 0.6);
             margin-bottom: 40px;
-            position: relative;
+            box-shadow: inset 0 0 20px rgba(255, 184, 184, 0.1);
         }
         .salutation {
             font-size: 1.4rem;
@@ -80,98 +123,108 @@
             margin-top: 40px;
             font-size: 1.3rem;
             color: #ff6b81;
-            font-family: 'Cedarville Cursive', cursive;
+            font-family: 'Brush Script MT', 'Comic Sans MS', cursive; /* 换一个更像手写的字体 */
         }
+
+        /* --- 照片区域 (拍立得风格) --- */
         .photo-section {
             text-align: center;
-            margin: 40px 0;
+            margin: 45px 0;
+            perspective: 1000px; /* 为3D旋转做准备 */
         }
         .photo-frame {
             display: inline-block;
-            border-radius: 15px;
-            padding: 10px;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            background: white; /* 拍立得白边 */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            /* 核心升级：初始倾斜角度 */
+            transform: rotate(-3deg);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* 顺滑的过渡效果 */
+        }
+        /* 鼠标悬停时照片回正并浮起 */
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.03) translateY(-10px);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
         }
         .photo {
             width: 300px;
             height: 300px;
             object-fit: cover;
-            border-radius: 10px;
-            border: 5px solid white;
+            border-radius: 4px; /* 照片本身的圆角小一点 */
+            border: 1px solid #eee;
+            cursor: pointer;
         }
         .photo-caption {
-            margin-top: 15px;
+            margin-top: 18px;
             font-style: italic;
             color: #ff8fa3;
+            font-weight: 500;
         }
+
+        /* --- 底部 --- */
         .footer {
             text-align: center;
             margin-top: 50px;
             padding-top: 30px;
-            border-top: 2px dashed #ffb8b8;
+            border-top: 2px dashed rgba(255, 184, 184, 0.5);
         }
-        .music-player { margin: 20px 0; }
         .play-btn {
-            background-color: #ff6b81;
+            background: linear-gradient(45deg, #ff6b81, #ff8fa3); /* 按钮也变成渐变色 */
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 10px;
             transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.3);
         }
         .play-btn:hover {
-            background-color: #ff4757;
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(255, 107, 129, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 107, 129, 0.5);
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
         }
         .birthday-wish {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #ff6b81;
-            margin-top: 30px;
-            font-weight: bold;
-            animation: pulse 2s infinite;
+            margin-top: 35px;
+            font-weight: 800;
+            /* 优化了跳动的动画，更Q弹 */
+            animation: bounce 2s infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
+
+        /* --- 响应式适配 --- */
         @media (max-width: 768px) {
-            .container { padding: 25px; }
+            .container { padding: 25px; margin: 15px; }
             .title { font-size: 2.2rem; }
             .photo { width: 250px; height: 250px; }
-            .letter-content { padding: 15px; font-size: 1.05rem; }
-        }
-        @media (max-width: 480px) {
-            .title { font-size: 1.8rem; }
-            .photo { width: 200px; height: 200px; }
+            .letter-content { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="heart" style="top: 30px; left: 30px;"><i class="fas fa-heart"></i></div>
-        <div class="heart" style="top: 50px; right: 50px;"><i class="fas fa-heart"></i></div>
-        <div class="heart" style="bottom: 100px; left: 40px;"><i class="fas fa-heart"></i></div>
-        <div class="heart" style="bottom: 80px; right: 60px;"><i class="fas fa-heart"></i></div>
+    <div class="container" id="mainContainer">
         
         <div class="header">
             <h1 class="title">生日快乐，章子璇大王 🎂</h1>
-            <div class="subtitle">一封写给你的专属情书</div>
+            <div class="subtitle">—— 一封写给你的专属情书 ——</div>
         </div>
         
         <div class="photo-section">
-            <div class="photo-frame">
+            <div class="photo-frame" title="点击切换照片">
                 <img src="https://youke.xn--y7xa690gmna.cn/s1/2026/02/18/6995c7a674214.webp" 
                      alt="我们的回忆" class="photo" id="mainPhoto">
             </div>
-            <p class="photo-caption">与你在一起的每一刻都值得珍藏 ❤️</p>
+            <p class="photo-caption">“ 与你在一起的每一刻，都闪闪发光 ✨ ”</p>
         </div>
         
         <div class="letter-content">
@@ -189,18 +242,18 @@
             
             <div class="signature">
                 成年快乐，未来可期。<br>
-                <span id="yourName">lss </span><br>
-                <span id="currentDate">2026年1月22日</span>
+                <span id="yourName" style="font-size: 1.5rem;">lss </span><br>
+                <span id="currentDate" style="font-size: 1rem; opacity: 0.8;">2026年1月22日</span>
             </div>
         </div>
         
         <div class="footer">
             <div class="music-player">
-                <p>点击播放，这是为你准备的生日歌 🎵</p>
+                <p style="margin-bottom: 15px; color: #ff8fa3;">🎵 点击下方按钮，播放生日专属BGM 🎵</p>
                 <button class="play-btn" id="playBtn">
                     <i class="fas fa-play"></i> 播放音乐
                 </button>
-                <audio id="birthdayMusic" loop autoplay>
+                <audio id="birthdayMusic" loop>
                     <source src="https://image2url.com/r2/default/audio/1771425925192-84d70b87-aa0e-4e9a-bd29-42acdd2bdf0b.mp3" type="audio/mpeg">
                 </audio>
             </div>
@@ -212,82 +265,110 @@
     </div>
 
     <script>
-        // --- 核心配置 ---
+        // --- 1. 音乐播放控制 (保持不变) ---
         const playBtn = document.getElementById('playBtn');
         const birthdayMusic = document.getElementById('birthdayMusic');
         let isPlaying = false; 
 
-        // --- 1. 尝试自动播放 (针对部分允许的旧设备) ---
-        window.addEventListener('load', function() {
-            birthdayMusic.play().then(() => {
-                // 如果运气好自动播放成功了
-                isPlaying = true;
-                playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
-            }).catch(error => {
-                // 如果被拦截了（绝大多数情况），什么都不做，等待用户交互
-                console.log("自动播放被拦截，等待用户点击...");
-            });
-        });
-
-        // --- 2. “隐形启动”黑科技 (重点修复) ---
-        // 只要用户点一下屏幕任何地方，或者滑动一下，就立刻触发播放
-        function startMusicOnInteraction() {
-            if (birthdayMusic.paused) {
-                birthdayMusic.play().then(() => {
-                    isPlaying = true;
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
-                    // 音乐启动后，移除这些监听，避免重复触发
-                    document.removeEventListener('click', startMusicOnInteraction);
-                    document.removeEventListener('touchstart', startMusicOnInteraction);
-                    document.removeEventListener('scroll', startMusicOnInteraction);
-                }).catch(e => console.log("播放失败", e));
-            }
-        }
-
-        // 监听各种用户操作（点击、触摸、滚动）
-        document.addEventListener('click', startMusicOnInteraction);
-        document.addEventListener('touchstart', startMusicOnInteraction);
-        document.addEventListener('scroll', startMusicOnInteraction);
-
-        // --- 3. 按钮手动控制功能 ---
-        playBtn.addEventListener('click', function(e) {
-            // 阻止冒泡，避免触发上面的隐形启动
-            e.stopPropagation(); 
-            
+        function toggleMusic() {
             if (isPlaying) {
                 birthdayMusic.pause();
                 playBtn.innerHTML = '<i class="fas fa-play"></i> 播放音乐';
                 isPlaying = false;
             } else {
-                birthdayMusic.play();
-                playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
-                isPlaying = true;
+                birthdayMusic.play().then(() => {
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
+                    isPlaying = true;
+                }).catch(e => console.error("播放失败，请检查浏览器设置", e));
             }
+        }
+
+        // 按钮点击切换
+        playBtn.addEventListener('click', function(e) {
+             e.stopPropagation(); // 阻止冒泡，防止触发点击特效
+             toggleMusic();
         });
-        
-        // --- 4. 装饰效果：随机爱心 & 日期 ---
-        document.addEventListener('DOMContentLoaded', function() {
-            // 随机爱心位置
-            const hearts = document.querySelectorAll('.heart');
-            hearts.forEach(heart => {
-                const randomX = Math.random() * 90 + 5;
-                const randomY = Math.random() * 90 + 5;
-                heart.style.left = `${randomX}%`;
-                heart.style.top = `${randomY}%`;
-            });
+
+        // 尝试自动播放（隐形启动）
+        function autoStartMusic() {
+            if (birthdayMusic.paused) {
+                birthdayMusic.play().then(() => {
+                    isPlaying = true;
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
+                    // 成功后移除监听器
+                    ['click', 'touchstart', 'scroll'].forEach(evt => 
+                        document.removeEventListener(evt, autoStartMusic)
+                    );
+                }).catch(() => {}); // 忽略初始失败
+            }
+        }
+        // 监听用户首次交互
+        ['click', 'touchstart', 'scroll'].forEach(evt => 
+            document.addEventListener(evt, autoStartMusic, { once: true })
+        );
+
+
+        // --- 2. 美化升级：动态飘浮爱心系统 ---
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            // 可以随机选择不同的图标，比如爱心、星星
+            const icons = ['fa-heart', 'fa-heart', 'fa-star'];
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+            heart.innerHTML = `<i class="fas ${randomIcon}"></i>`;
             
-            // 日期已在HTML中固定，此处无需JS设置
+            // 随机参数
+            const size = Math.random() * 20 + 10; // 10px - 30px
+            const left = Math.random() * 100; // 0% - 100% 屏幕宽度
+            const duration = Math.random() * 5 + 5; // 5s - 10s 飘动时间
+            const opacity = Math.random() * 0.5 + 0.2; // 透明度
+
+            heart.style.left = `${left}vw`;
+            heart.style.fontSize = `${size}px`;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.opacity = opacity;
+            
+            document.body.appendChild(heart);
+
+            // 动画结束后移除元素，防止内存泄漏
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // 每隔 400ms 生成一个新爱心
+        setInterval(createFloatingHeart, 400);
+
+
+        // --- 3. 美化升级：鼠标点击炸裂特效 ---
+        document.addEventListener('click', function(e) {
+            // 如果点击的是按钮或照片，不触发特效
+            if (e.target.closest('.play-btn') || e.target.closest('.photo-frame')) return;
+
+            const sparkle = document.createElement('div');
+            sparkle.className = 'click-sparkle';
+            sparkle.innerHTML = '<i class="fas fa-heart"></i>';
+            
+            sparkle.style.left = `${e.clientX}px`;
+            sparkle.style.top = `${e.clientY}px`;
+            
+            document.body.appendChild(sparkle);
+            
+            // 动画结束后移除
+            sparkle.addEventListener('animationend', () => sparkle.remove());
         });
+
         
-        // --- 5. 照片切换功能 ---
+        // --- 4. 照片切换功能 (保持不变) ---
         const photo = document.getElementById('mainPhoto');
         const photoUrls = [
             'https://youke.xn--y7xa690gmna.cn/s1/2026/02/18/6995c7a674214.webp',
-            // 可以在这里加更多的图片链接
+            // 在这里添加更多照片链接...
         ];
         let currentPhotoIndex = 0;
         
-        photo.addEventListener('click', function() {
+        photo.addEventListener('click', function(e) {
+            e.stopPropagation();
             if(photoUrls.length > 1) {
                 currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
                 photo.src = photoUrls[currentPhotoIndex];
